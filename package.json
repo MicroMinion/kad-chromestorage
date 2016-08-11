@@ -1,9 +1,12 @@
 {
   "name": "kad-chromestorage",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "an interface to chrome storage for kad",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "echo",
+    "2npm": "publish"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MicroMinion/kad-chromestorage.git"
@@ -21,5 +24,8 @@
   "homepage": "https://github.com/MicroMinion/kad-chromestorage#readme",
   "dependencies": {
     "lodash": "^4.14.1"
+  },
+  "devDependencies": {
+    "publish": "^0.6.0"
   }
 }
