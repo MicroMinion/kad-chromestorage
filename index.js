@@ -9,16 +9,17 @@ var KadChromeStorage = function (namespace) {
 }
 
 KadChromeStorage.prototype.get = function (key, cb) {
+  var self = this
   chrome.storage.local.get(this._prefix + key, function (items) {
     if (!cb) {
       return
     }
     if (chrome.runtime.lastError) {
       cb(new Error('error while retrieving key ' + key))
-    } else if (!_.has(items, key)) {
+    } else if (!_.has(items, self._prefix + key)) {
       cb(new Error('key not found ' + key))
     } else {
-      cb(null, items[key])
+      cb(null, items[self._prefix + key])
     }
   })
 }
