@@ -10,6 +10,9 @@ var KadChromeStorage = function (namespace) {
 
 KadChromeStorage.prototype.get = function (key, cb) {
   chrome.storage.local.get(this._prefix + key, function (items) {
+    if (!cb) {
+      return
+    }
     if (chrome.runtime.lastError) {
       cb(new Error('error while retrieving key ' + key))
     } else if (!_.has(items, key)) {
@@ -25,6 +28,9 @@ KadChromeStorage.prototype.put = function (key, val, cb) {
   var items = {}
   items[key] = val
   chrome.storage.local.set(items, function () {
+    if (!cb) {
+      return
+    }
     if (chrome.runtime.lastError) {
       cb(new Error('Error while storing ' + key))
     } else {
@@ -36,6 +42,9 @@ KadChromeStorage.prototype.put = function (key, val, cb) {
 KadChromeStorage.prototype.del = function (key, cb) {
   key = this._prefix + key
   chrome.storage.local.remove(key, function () {
+    if (!cb) {
+      return
+    }
     if (chrome.runtime.lastError) {
       cb(new Error('Error while removing ' + key))
     } else {
